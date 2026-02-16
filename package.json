@@ -1,0 +1,19 @@
+{
+  "name": "ai-toolbox",
+  "version": "1.0.0",
+  "description": "AI助手工具箱 - 包含文本统计、单位换算、密码生成等功能",
+  "main": "index.html",
+  "scripts": {
+    "dev": "python -m http.server 8000",
+    "deploy": "vercel --prod"
+  },
+  "keywords": [
+    "ai",
+    "toolbox",
+    "text-statistics",
+    "unit-converter",
+    "password-generator"
+  ],
+  "author": "GitHub User",
+  "license": "MIT"
+}
