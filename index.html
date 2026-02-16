@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>我的AI助手工具箱</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>我的AI助手工具箱</h1>
+            <div class="skin-selector">
+                <label>皮肤:</label>
+                <select id="skin-select">
+                    <option value="default">默认</option>
+                    <option value="dark">深色</option>
+                    <option value="light">浅色</option>
+                    <option value="colorful">多彩</option>
+                </select>
+            </div>
+        </header>
+        
+        <main>
+            <!-- 文本字数统计 -->
+            <section class="tool-section">
+                <h2>文本字数统计</h2>
+                <div class="tool-content">
+                    <textarea id="text-input" placeholder="请输入文本..."></textarea>
+                    <div style="display: flex; justify-content: flex-end; margin-top: 10px;">
+                        <button id="clear-btn">清空</button>
+                    </div>
+                    <div id="count-result"></div>
+                </div>
+            </section>
+            
+            <!-- 单位换算器 -->
+            <section class="tool-section">
+                <h2>单位换算器</h2>
+                <div class="tool-content">
+                    <select id="converter-type">
+                        <option value="length">长度</option>
+                        <option value="weight">重量</option>
+                        <option value="temperature">温度</option>
+                    </select>
+                    
+                    <div class="converter-inputs">
+                        <input type="number" id="input-value" placeholder="输入数值">
+                        <select id="from-unit"></select>
+                        <span>→</span>
+                        <input type="number" id="output-value" readonly>
+                        <select id="to-unit"></select>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- 随机密码生成器 -->
+            <section class="tool-section">
+                <h2>随机密码生成器</h2>
+                <div class="tool-content">
+                    <div class="password-options">
+                        <label>
+                            密码长度:
+                            <input type="range" id="password-length" min="8" max="32" value="12">
+                            <span id="length-value">12</span>
+                        </label>
+                        
+                        <div class="checkbox-group">
+                            <label>
+                                <input type="checkbox" id="include-uppercase" checked>
+                                大写字母
+                            </label>
+                            <label>
+                                <input type="checkbox" id="include-lowercase" checked>
+                                小写字母
+                            </label>
+                            <label>
+                                <input type="checkbox" id="include-numbers" checked>
+                                数字
+                            </label>
+                            <label>
+                                <input type="checkbox" id="include-symbols" checked>
+                                特殊符号
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <button id="generate-btn">生成密码</button>
+                    <div class="password-result">
+                        <input type="text" id="password-output" readonly>
+                        <button id="copy-btn">复制</button>
+                    </div>
+                    <div id="password-strength"></div>
+                </div>
+            </section>
+        </main>
+        
+        <footer>
+            <p>© 2026 我的AI助手工具箱</p>
+        </footer>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
