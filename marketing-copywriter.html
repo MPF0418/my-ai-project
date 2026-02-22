@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>智能文案生成器</title>
+    <link rel="stylesheet" href="marketing-copywriter.css">
+</head>
+<body>
+    <!-- 加载遮罩 -->
+    <div id="loading-overlay" class="loading-overlay">
+        <div class="loading-content">
+            <div class="loading-spinner"></div>
+            <div class="loading-text">正在生成高质量文案，请稍候...</div>
+            <div class="loading-progress">
+                <div class="progress-bar"></div>
+                <div class="progress-text">0%</div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="container">
+        <header>
+            <h1>智能文案生成器</h1>
+            <div class="header-controls">
+                <div class="skin-selector">
+                    <label>皮肤:</label>
+                    <select id="skin-select">
+                        <option value="default">默认</option>
+                        <option value="dark">深色</option>
+                        <option value="light">浅色</option>
+                        <option value="colorful">多彩</option>
+                    </select>
+                </div>
+                <div class="model-selector">
+                    <label>大模型:</label>
+                    <select id="model-select">
+                        <option value="Qwen/Qwen2.5-7B-Instruct">Qwen2.5-7B</option>
+                        <option value="Qwen/Qwen2.5-3B-Instruct">Qwen2.5-3B</option>
+                        <option value="Qwen/Qwen2-7B-Instruct">Qwen2-7B</option>
+                        <option value="Meta/Llama-3-8B-Instruct">Llama 3-8B</option>
+                        <option value="Google/gemma-7b-it">Gemma 7B</option>
+                    </select>
+                </div>
+            </div>
+        </header>
+        
+        <main>
+            <section class="tool-section">
+                <div class="tool-content">
+                    <!-- 文案类型和风格选择 -->
+                    <div class="copywriter-options">
+                        <label class="inline-label">
+                            <span class="label-text">文案大类<span class="required">*</span></span>
+                            <select id="copywriter-category">
+                                <option value="营销推广">营销推广</option>
+                                <option value="节日祝福">节日祝福</option>
+                                <option value="社交互动">社交互动</option>
+                                <option value="商务办公">商务办公</option>
+                                <option value="个人生活">个人生活</option>
+                                <option value="其他">其他</option>
+                            </select>
+                        </label>
+                        <label class="inline-label">
+                            <span class="label-text">文案类型<span class="required">*</span></span>
+                            <select id="copywriter-type">
+                                <option value="朋友圈文案">朋友圈文案</option>
+                                <option value="小红书文案">小红书文案</option>
+                                <option value="公众号文章标题">公众号文章标题</option>
+                                <option value="短视频脚本">短视频脚本</option>
+                                <option value="拜年短信">拜年短信</option>
+                                <option value="节日祝福">节日祝福</option>
+                                <option value="邀请函">邀请函</option>
+                                <option value="感谢信">感谢信</option>
+                                <option value="其他">其他</option>
+                            </select>
+                        </label>
+                        <label class="inline-label">
+                            <span class="label-text">文案风格<span class="required">*</span></span>
+                            <select id="copywriter-style">
+                                <option value="专业严谨">专业严谨</option>
+                                <option value="幽默风趣">幽默风趣</option>
+                                <option value="温馨亲切">温馨亲切</option>
+                                <option value="激进营销">激进营销</option>
+                                <option value="正式庄重">正式庄重</option>
+                                <option value="轻松活泼">轻松活泼</option>
+                                <option value="感人温情">感人温情</option>
+                                <option value="创意独特">创意独特</option>
+                            </select>
+                        </label>
+                        <label class="inline-label">
+                            <span class="label-text">文案主题<span class="required">*</span></span>
+                            <input type="text" id="copywriter-topic" placeholder="例如：春节拜年、产品促销等">
+                        </label>
+                        <div class="word-count-limit">
+                            <label class="inline-label">
+                                <span class="label-text">字数限制</span>
+                                <div class="word-count-inputs">
+                                    <div class="number-input">
+                                        <button type="button" class="number-btn decrease" data-target="min-word-count">-</button>
+                                        <input type="number" id="min-word-count" placeholder="最少" min="1">
+                                        <button type="button" class="number-btn increase" data-target="min-word-count">+</button>
+                                    </div>
+                                    <span>-</span>
+                                    <div class="number-input">
+                                        <button type="button" class="number-btn decrease" data-target="max-word-count">-</button>
+                                        <input type="number" id="max-word-count" placeholder="最多" min="1">
+                                        <button type="button" class="number-btn increase" data-target="max-word-count">+</button>
+                                    </div>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <!-- 产品信息输入 (仅营销推广类需要) -->
+                    <div class="product-info" id="product-info-section">
+                        <h3>产品信息</h3>
+                        <label class="inline-label">
+                            <span class="label-text">产品名称<span class="required">*</span></span>
+                            <input type="text" id="product-name" placeholder="请输入产品名称">
+                        </label>
+                        <label class="inline-label">
+                            <span class="label-text">产品特点<span class="required">*</span></span>
+                            <textarea id="product-features" placeholder="请输入产品特点，用逗号分隔"></textarea>
+                        </label>
+                        <label class="inline-label">
+                            <span class="label-text">目标用户<span class="required">*</span></span>
+                            <input type="text" id="target-audience" placeholder="请输入目标用户">
+                        </label>
+                    </div>
+                    
+                    <!-- 生成按钮 -->
+                    <div class="generate-buttons">
+                        <button id="generate-copywriter-btn">生成单个文案</button>
+                        <button id="generate-batch-btn">批量生成(3个)</button>
+                    </div>
+                    
+                    <!-- 结果显示 -->
+                    <div class="copywriter-result">
+                        <div id="batch-results" style="display: none;">
+                            <!-- 批量生成结果将在这里显示 -->
+                        </div>
+                        <div id="single-result">
+                            <textarea id="copywriter-output" readonly placeholder="生成的文案将显示在这里"></textarea>
+                            <div class="result-actions">
+                                <button id="copy-copywriter-btn">复制文案</button>
+                                <button id="export-copywriter-btn">导出文案</button>
+                            </div>
+                            <div id="copywriter-rating" style="margin-top: 15px;"></div>
+                        </div>
+                    </div>
+                    
+                    <!-- 历史记录入口 -->
+                    <div class="history-entry">
+                        <button id="history-btn">查看历史记录</button>
+                    </div>
+                </div>
+            </section>
+        </main>
+        
+        <footer>
+            <p>© 2026 智能营销文案生成器</p>
+        </footer>
+    </div>
+    <script src="marketing-copywriter-simple.js"></script>
+</body>
+</html>

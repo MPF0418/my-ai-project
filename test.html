@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>测试页面</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        .test-section {
+            margin: 20px 0;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        button {
+            padding: 10px 20px;
+            margin: 5px;
+            cursor: pointer;
+        }
+        select {
+            padding: 10px;
+            margin: 5px;
+        }
+        .result {
+            margin: 10px 0;
+            padding: 10px;
+            background: #f0f0f0;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>功能测试页面</h1>
+    
+    <div class="test-section">
+        <h2>1. 基本DOM操作测试</h2>
+        <button onclick="testDomOperation()">测试DOM操作</button>
+        <div id="dom-result" class="result"></div>
+    </div>
+    
+    <div class="test-section">
+        <h2>2. 事件监听器测试</h2>
+        <button id="event-btn">点击测试事件</button>
+        <div id="event-result" class="result"></div>
+    </div>
+    
+    <div class="test-section">
+        <h2>3. 皮肤切换测试</h2>
+        <select id="skin-test">
+            <option value="default">默认</option>
+            <option value="dark">深色</option>
+            <option value="light">浅色</option>
+        </select>
+        <div id="skin-result" class="result"></div>
+    </div>
+    
+    <div class="test-section">
+        <h2>4. 文案大类联动测试</h2>
+        <select id="category-test">
+            <option value="营销推广">营销推广</option>
+            <option value="其他">其他</option>
+        </select>
+        <div id="product-info" style="display: none; margin-top: 10px; padding: 10px; background: #e8f4f8; border-radius: 5px;">
+            产品信息区域
+        </div>
+        <div id="category-result" class="result"></div>
+    </div>
+
+    <script>
+        // 测试基本DOM操作
+        function testDomOperation() {
+            const resultDiv = document.getElementById('dom-result');
+            resultDiv.textContent = 'DOM操作成功！' + new Date().toLocaleString();
+        }
+        
+        // 测试事件监听器
+        document.getElementById('event-btn').addEventListener('click', function() {
+            const resultDiv = document.getElementById('event-result');
+            resultDiv.textContent = '事件监听器工作正常！' + new Date().toLocaleString();
+        });
+        
+        // 测试皮肤切换
+        document.getElementById('skin-test').addEventListener('change', function(e) {
+            const resultDiv = document.getElementById('skin-result');
+            resultDiv.textContent = '皮肤切换到：' + e.target.value + ' ' + new Date().toLocaleString();
+        });
+        
+        // 测试文案大类联动
+        document.getElementById('category-test').addEventListener('change', function() {
+            const category = this.value;
+            const productInfo = document.getElementById('product-info');
+            const resultDiv = document.getElementById('category-result');
+            
+            if (category === '营销推广') {
+                productInfo.style.display = 'block';
+                resultDiv.textContent = '显示产品信息区域 ' + new Date().toLocaleString();
+            } else {
+                productInfo.style.display = 'none';
+                resultDiv.textContent = '隐藏产品信息区域 ' + new Date().toLocaleString();
+            }
+        });
+        
+        // 页面加载完成后测试
+        window.addEventListener('DOMContentLoaded', function() {
+            console.log('测试页面加载完成');
+            document.getElementById('dom-result').textContent = '页面加载完成，DOM元素可用';
+        });
+    </script>
+</body>
+</html>

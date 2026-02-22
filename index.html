@@ -93,6 +93,73 @@
                     <div id="password-strength"></div>
                 </div>
             </section>
+            
+            <!-- 智能营销文案生成器 -->
+            <section class="tool-section">
+                <h2>智能营销文案生成器</h2>
+                <div class="tool-content">
+                    <!-- API Key 配置 -->
+                    <div class="api-config">
+                        <label>
+                            SiliconFlow API Key:
+                            <input type="password" id="api-key" placeholder="请输入API Key" value="">
+                        </label>
+                    </div>
+                    
+                    <!-- 产品信息输入 -->
+                    <div class="product-info">
+                        <label>
+                            产品名称:
+                            <input type="text" id="product-name" placeholder="请输入产品名称">
+                        </label>
+                        <label>
+                            产品特点:
+                            <textarea id="product-features" placeholder="请输入产品特点，用逗号分隔"></textarea>
+                        </label>
+                        <label>
+                            目标用户:
+                            <input type="text" id="target-audience" placeholder="请输入目标用户">
+                        </label>
+                    </div>
+                    
+                    <!-- 文案类型和风格选择 -->
+                    <div class="copywriter-options">
+                        <label>
+                            文案类型:
+                            <select id="copywriter-type">
+                                <option value="朋友圈文案">朋友圈文案</option>
+                                <option value="小红书文案">小红书文案</option>
+                                <option value="公众号文章标题">公众号文章标题</option>
+                                <option value="短视频脚本">短视频脚本</option>
+                            </select>
+                        </label>
+                        <label>
+                            文案风格:
+                            <select id="copywriter-style">
+                                <option value="专业严谨">专业严谨</option>
+                                <option value="幽默风趣">幽默风趣</option>
+                                <option value="温馨亲切">温馨亲切</option>
+                                <option value="激进营销">激进营销</option>
+                            </select>
+                        </label>
+                    </div>
+                    
+                    <!-- 生成按钮 -->
+                    <button id="generate-copywriter-btn">生成文案</button>
+                    
+                    <!-- 结果显示 -->
+                    <div class="copywriter-result">
+                        <textarea id="copywriter-output" readonly placeholder="生成的文案将显示在这里"></textarea>
+                        <button id="copy-copywriter-btn">复制文案</button>
+                    </div>
+                    
+                    <!-- 历史记录 -->
+                    <div class="copywriter-history">
+                        <h3>历史记录</h3>
+                        <div id="history-list"></div>
+                    </div>
+                </div>
+            </section>
         </main>
         
         <footer>
